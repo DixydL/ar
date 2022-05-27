@@ -1,0 +1,11 @@
+Model Information:
+* title:	T- Rex V3
+* source:	https://sketchfab.com/3d-models/t-rex-v3-db3b48ee5763472aafd7d5e6ab381572
+* author:	ann55010970637 (https://sketchfab.com/ann55010970637)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "T- Rex V3" (https://sketchfab.com/3d-models/t-rex-v3-db3b48ee5763472aafd7d5e6ab381572) by ann55010970637 (https://sketchfab.com/ann55010970637) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
