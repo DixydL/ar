@@ -6,7 +6,8 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.4/dist/mindar-image-aframe.prod.js"></script>
-    <script src="https://rawgit.com/allanweir/aframe-touch-rotation-controls/master/dist/aframe-touch-rotation-controls.min.js"></script>
+    <script
+        src="https://rawgit.com/allanweir/aframe-touch-rotation-controls/master/dist/aframe-touch-rotation-controls.min.js"></script>
 </head>
 
 <body>
@@ -17,14 +18,15 @@
             <a-asset-item id="bearModel" src="/r/scene.gltf"></a-asset-item>
         </a-assets>
 
-        <a-camera position="0 0 0"></a-camera>
+        <a-camera drag-rotate-component position="0 0 0" look-controls="enabled: false"></a-camera>
 
-        <a-entity camera universal-controls="movementControls: hmd; rotationControls: touch-rotation" mindar-image-target="targetIndex: 0">
-            <a-gltf-model rotation="0 0 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#bearModel" animation-mixer>
+        <a-entity mindar-image-target="targetIndex: 0">
+            <a-gltf-model rotation="1 0 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#bearModel" animation-mixer>
         </a-entity>
     </a-scene>
 </body>
 <script>
+
     AFRAME.registerComponent('drag-rotate-component', {
         schema: { speed: { default: 1 } },
         init: function () {
@@ -51,18 +53,29 @@
             console.log("xz");
             if (this.ifMouseDown) {
 
-                var temp_x = event.clientX - this.x_cord;
-                var temp_y = event.clientY - this.y_cord;
-                console.log(temp_x);
+                var touch = event.touches[0];
+                var movementX = touch.screenX - this.x_cord;
+                var movementY = touch.screenY - this.y_cord;
+                console.log(movementX);
 
-                if (Math.abs(temp_y) < Math.abs(temp_x)) {
-                    this.el.object3D.rotateY(temp_x * this.data.speed / 1000);
+                if (Math.abs(movementY) < Math.abs(movementX)) {
+                    el.object3D.rotation.set(
+                        THREE.Math.degToRad(movementX * this.data.speed / 1000),
+                        THREE.Math.degToRad(0),
+                        THREE.Math.degToRad(0)
+                    );
+                    el.object3D.rotation.x += Math.PI;
                 }
                 else {
-                    this.el.object3D.rotateX(temp_y * this.data.speed / 1000);
+                    el.object3D.rotation.set(
+                        THREE.Math.degToRad(0),
+                        THREE.Math.degToRad(movementY * this.data.speed / 1000),
+                        THREE.Math.degToRad(0)
+                    );
+                    el.object3D.rotation.y += Math.PI;
                 }
-                this.x_cord = event.clientX;
-                this.y_cord = event.clientY;
+                this.x_cord = touch.screenX;
+                this.y_cord = touch.screenY;
             }
         }
     });
