@@ -47,7 +47,10 @@
             this.ifMouseDown = false;
         },
         OnDocumentMouseMove: function (event) {
+            console.log("xz");
             if (this.ifMouseDown) {
+                console.log("xz");
+                
                 var temp_x = event.clientX - this.x_cord;
                 var temp_y = event.clientY - this.y_cord;
                 if (Math.abs(temp_y) < Math.abs(temp_x)) {
