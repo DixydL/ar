@@ -1,6 +1,4 @@
-var connect = require('connect');
- var serveStatic = require('serve-static');
 
- connect()
-     .use(serveStatic(__dirname))
-     .listen(8080, () => console.log('Server running on 8080...'));
+
+<a-gltf-model rotation="1 0 0 " position="0 0 0" scale="0.5 0.5 0.5" src="#bearModel" animation-mixer>
+<a-asset-item id="bearModel" src="/r/scene.gltf"></a-asset-item>
